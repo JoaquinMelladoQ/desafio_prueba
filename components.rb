@@ -16,7 +16,28 @@ def head
         <body>"
 end
 
-def build_web_page( param )
+
+def request( url, key )
+
+    
+end
+
+
+require "uri"
+require "net/http"
+
+    url = URI("https://api.nasa.gov/planetary/apod?api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
+    api_key = 'BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec'
+
+    https = Net::HTTP.new(url.host, url.port);
+    https.use_ssl = true
+
+    request = Net::HTTP::Get.new(url)
+
+    response = https.request(request)
+    puts response.read_body
+
+def build_web_page( hash )
     
     i = 1
     html = ""
@@ -31,6 +52,12 @@ def build_web_page( param )
 
     puts "#{ul}"
 end
+
+# camara_amount = {}
+
+# def photos_count( params )
+    
+# end
 
 def foot
     "<!--JQuery-->
