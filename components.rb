@@ -16,7 +16,7 @@ def head
         <body>"
 end
 
-def listas( param )
+def build_web_page( param )
     
     i = 1
     html = ""
