@@ -17,17 +17,12 @@ def head
 end
 
 
-def request( url, key )
-
-    
-end
+def request( url, api_key )
 
 
-require "uri"
-require "net/http"
+    require "uri"
+    require "net/http"
 
-    url = URI("https://api.nasa.gov/planetary/apod?api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
-    api_key = 'BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec'
 
     https = Net::HTTP.new(url.host, url.port);
     https.use_ssl = true
@@ -35,9 +30,13 @@ require "net/http"
     request = Net::HTTP::Get.new(url)
 
     response = https.request(request)
-    puts response.read_body
+    data = response.read_body
+    data = JSON.parse(data)
 
-def build_web_page( hash )
+end
+
+
+def build_web_page( data )
     
     i = 1
     html = ""
@@ -69,3 +68,11 @@ def foot
 </body>
 </html>"
 end
+
+url = URI("https://api.nasa.gov/planetary/apod?api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
+api_key = 'BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec'
+
+
+
+index = head() + build_web_page() + foot()
+File.write('./index.html', index)
