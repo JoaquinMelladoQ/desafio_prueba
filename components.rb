@@ -48,8 +48,16 @@ end
 #adding logic to the web
 #create a list for imgs
 
-def build_web_page()
+def build_web_page( data_photos )
+    i = 1
+    html = ""
+    ul = ""
 
+    while ( i < data_photos )
+        i += 1
+        ul = "<ul>#{html}</ul>"
+        html += "\n\t<li> #{} </li>\n"
+    end
 
 end
 
@@ -68,6 +76,9 @@ end
 
 #conecting everything adding file
 
+index = head() + build_web_page + foot()
+
+File.write('./index.html', index)
 
 
 
