@@ -16,4 +16,31 @@ data_api = JSON.parse(data)
 
 data_photos = data_api["photos"]
 
+puts data_photos[0]["img_src"]
 puts data_photos[1]["img_src"]
+puts data_photos[2]["img_src"]
+puts data_photos[3]["img_src"]
+
+
+
+
+
+
+
+
+
+
+# def filter( param )
+#     data_img = []
+
+#     param.each do | key, value |
+#        data_img = param.select { | key, value | value if value == "img_src" }
+#     end
+#     data_img.class
+# end
+
+# puts filter( data_photos )
+
+
+
+
