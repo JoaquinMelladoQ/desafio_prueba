@@ -20,9 +20,13 @@ def request( url, api_key )
 
     data_photos = data_api["photos"]
 
-    puts data_photos[0]["img_src"]
-
+    data_photos.each do | e |
+        e.each do | key, value |
+            puts key if key == "img_src"
+        end
+    end
 end
+
 #define method for building web
 
 def head
@@ -47,15 +51,7 @@ end
 #create a list for imgs
 
 def build_web_page( data_photos )
-    i = 1
-    html = ""
-    ul = ""
-
-    while ( i < data_photos )
-        i += 1
-        ul = "<ul>#{html}</ul>"
-        html += "\n\t<li> #{} </li>\n"
-    end
+   
 
 end
 
@@ -77,9 +73,9 @@ end
 params_request = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
 create_web = build_web_page( params_request )
 
-index = head() + create_web + foot()
+# index = head() + create_web + foot()
 
-File.write('./index.html', index)
+# File.write('./index.html', index)
 
 
 
