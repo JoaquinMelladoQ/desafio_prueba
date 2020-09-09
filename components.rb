@@ -20,11 +20,17 @@ def request( url, api_key )
 
     data_photos = data_api["photos"]
 
+    data_imgs = []
+
     data_photos.each do | e |
         e.each do | key, value |
-            puts key if key == "img_src"
+            data_imgs.push( [key] ) if key == "img_src"
         end
+        data_imgs
     end
+
+    puts data_imgs
+
 end
 
 #define method for building web
