@@ -7,7 +7,7 @@ require "json"
 
 def request( url, api_key )
 
-    url = URI()
+    url = URI("#{url}&api_key=#{api_key}")
 
     https = Net::HTTP.new(url.host, url.port);
     https.use_ssl = true
