@@ -6,7 +6,8 @@ require "json"
 
 
 def request( url, api_key )
-    url = URI("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
+
+    url = URI()
 
     https = Net::HTTP.new(url.host, url.port);
     https.use_ssl = true
@@ -30,7 +31,7 @@ def head
         <head>
             <meta charset='UTF-8'>
             <meta name='viewport' content='width=device-width, initial-scale=1.0'>
-            <title>Document</title>
+            <title>{ NASA imgs }</title>
             <!--CSS de Bootstrap 4-->
             <link rel='stylesheet' href='https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css' integrity='sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk' crossorigin='anonymous'>
             <!--Font Awesome-->
@@ -73,7 +74,10 @@ end
 
 #conecting everything adding file
 
-index = head() + build_web_page + foot()
+params_request = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
+create_web = build_web_page( params_request )
+
+index = head() + create_web + foot()
 
 File.write('./index.html', index)
 
