@@ -24,12 +24,11 @@ def request( url, api_key )
 
     data_photos.each do | e |
         e.each do | key, value |
-            data_imgs.push( [key] ) if key == "img_src"
+            data_imgs.push( [key] ) if key == "img_src" 
         end
         data_imgs
     end
-
-    puts data_imgs
+    # print data_imgs
 
 end
 
@@ -56,7 +55,7 @@ end
 #adding logic to the web
 #create a list for imgs
 
-def build_web_page( data_photos )
+def build_web_page( data_imgs )
    
 
 end
