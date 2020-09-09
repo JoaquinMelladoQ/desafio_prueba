@@ -32,25 +32,22 @@ end
 
 
 def build_web_page( data_imgs )
-    head = "<html>\n  <head>\n       <title>{ Nasa imgs }</title>\n  </head>\n <body>\n"
-    body = "    <ul>"
-    foot = "    </ul>\n</body>\n</html>"
+    first_part = "<html>\n  <head>\n  </head>\n <body>\n"
+    middle = "    <ul>"
+    last_part = "    </ul>\n</body>\n</html>"
 
     data_imgs.each do | value |
-        body += "\n       <li><img src=\"#{ value }\"></img></li>\n"
+        middle += "\n       <li><img src=\"#{ value }\"></img></li>\n"
     end
-    return head + body + foot
+    return first_part + middle + last_part
 end
-
-
-
 
 #conecting everything adding file
 
 params_request = request("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
 create_web = build_web_page( params_request )
 
-index = create_web
+index = create_web 
 
 File.write('./index.html', index)
 
