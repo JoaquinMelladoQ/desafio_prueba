@@ -4,27 +4,24 @@ require "uri"
 require "net/http"
 require "json"
 
-url = URI("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
-api_key = 'BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec'
 
-https = Net::HTTP.new(url.host, url.port);
-https.use_ssl = true
+def request( url, api_key )
+    url = URI("https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec")
 
-request = Net::HTTP::Get.new(url)
+    https = Net::HTTP.new(url.host, url.port);
+    https.use_ssl = true
 
-response = https.request(request)
-data = response.read_body
-data_api = JSON.parse(data)
+    request = Net::HTTP::Get.new(url)
 
-data_photos = data_api["photos"]
+    response = https.request(request)
+    data = response.read_body
+    data_api = JSON.parse(data)
 
-puts data_photos[0]["img_src"]
-puts data_photos[1]["img_src"]
-puts data_photos[2]["img_src"]
-puts data_photos[3]["img_src"]
-puts data_photos[4]["img_src"]
-puts data_photos[5]["img_src"]
+    data_photos = data_api["photos"]
 
+    puts data_photos[0]["img_src"]
+
+end
 #define method for building web
 
 def head
