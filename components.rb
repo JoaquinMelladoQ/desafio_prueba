@@ -19,14 +19,21 @@ def request( url, api_key )
 
     data_photos = data_api[ "photos" ]
 
-    data_imgs = []
+    # data_imgs = []
 
-    data_photos.each do | iter |
-        iter.each do | key, value |
-            data_imgs.push( value ) if ( key == "img_src" )
-        end
+    # data_photos.each do | iter |
+    #     iter.each do | key, value |
+    #         data_imgs.push( value ) if ( key == "img_src" )
+    #     end
+    # end
+    # return data_imgs
+
+    data_camara = {}
+
+    data_photos.each do | key, value |
+        data_camara[ value ].push if key == [:name]    
     end
-    return data_imgs
+    puts data_camara
 end
 
 
@@ -44,10 +51,10 @@ end
 
 
 params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
-index = build_web_page( params_request )
+# index = build_web_page( params_request )
 
 
-File.write( './index.html', index )
+# File.write( './index.html', index )
 
 
 
