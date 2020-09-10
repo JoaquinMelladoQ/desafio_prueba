@@ -34,15 +34,16 @@ def request( url, api_key )
     data_photos.each do | iter |
         iter.each do | key, value |
             data_camera.push( value ) if ( key == "camera" )
-            data_camera.each do | iter |
-                iter.each do | key, value |
-                    data_camera_name.push( value ) if ( key == "name" )
-                end
-            end
         end
     end
     # return data_camera
-    puts data_camera_name
+
+    data_camera.each do | iter |
+        iter.each do | key, value |
+            data_camera_name.push( value ) if ( key == "name" )
+        end
+    end
+    puts data_camera_name.sample
 end
 
 
