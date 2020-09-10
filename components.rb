@@ -18,45 +18,19 @@ def request( url, api_key )
     data_api = JSON.parse(data)
 
     data_photos = data_api[ "photos" ]
-
+    
     data_imgs = []
-
+    
     data_photos.each do | iter |
         iter.each do | key, value |
             data_imgs.push( value ) if ( key == "img_src" )
         end
     end
-    return data_imgs
+    return data_imgs    
     
 end
 
 params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
-
-
-# data_camera = []
-# data_camera_name = []
-
-# data_photos.each do | iter |
-#     iter.each do | key, value |
-#         data_camera.push( value ) if ( key == "camera" )
-#     end
-# end
-# puts data_camera
-
-# data_camera.each do | iter |
-#     iter.each do | key, value |
-#         data_camera_name.push( value ) if ( key == "name" )
-#     end
-# end
-# return data_camera_name.length
-
-
-# def photos_count( data_camera_name, data_photos )
-#     puts "#{data_camera_name} its large #{data_photos}"
-# end
-
-# photos_count( data_camera_name, data_photos )
-
 
 
 def build_web_page( data_imgs )
@@ -70,9 +44,6 @@ def build_web_page( data_imgs )
     end
     return ( first_part + middle + last_part )
 end
-
-
-
 
 index = build_web_page( params_request )
 
