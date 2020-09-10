@@ -1,4 +1,3 @@
-#define method for first part
 
 require "uri"
 require "net/http"
