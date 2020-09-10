@@ -41,23 +41,21 @@ params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curios
 #         data_camera.push( value ) if ( key == "camera" )
 #     end
 # end
-# # puts data_camera.length
+# puts data_camera
 
 # data_camera.each do | iter |
 #     iter.each do | key, value |
 #         data_camera_name.push( value ) if ( key == "name" )
 #     end
 # end
-# # return data_camera_name.length
+# return data_camera_name.length
 
 
-# def photos_count( camera, photos )
-    
-    
+# def photos_count( data_camera_name, data_photos )
+#     puts "#{data_camera_name} its large #{data_photos}"
 # end
 
-
-# call = photos_count( data_camera_name, data_photos )
+# photos_count( data_camera_name, data_photos )
 
 
 
@@ -72,6 +70,8 @@ def build_web_page( data_imgs )
     end
     return ( first_part + middle + last_part )
 end
+
+
 
 
 index = build_web_page( params_request )
