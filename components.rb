@@ -29,21 +29,20 @@ def request( url, api_key )
     # return data_imgs
 
     data_camera = []
-    data_name = []
-    
+    data_camera_name = []
+
     data_photos.each do | iter |
         iter.each do | key, value |
-            data_camera.push( value ) if key == "camera"
+            data_camera.push( value ) if ( key == "camera" )
             data_camera.each do | iter |
                 iter.each do | key, value |
-                    data_name.push( value ) if key == "name"
+                    data_camera_name.push( value ) if ( key == "name" )
                 end
             end
         end
     end
     # return data_camera
-
-    puts data_name
+    puts data_camera_name
 end
 
 
