@@ -36,14 +36,14 @@ def request( url, api_key )
             data_camera.push( value ) if ( key == "camera" )
         end
     end
-    # return data_camera
+    puts data_camera.length
 
     data_camera.each do | iter |
         iter.each do | key, value |
             data_camera_name.push( value ) if ( key == "name" )
         end
     end
-    puts data_camera_name.sample
+    # puts data_camera_name.length
 end
 
 
