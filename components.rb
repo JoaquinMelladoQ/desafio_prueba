@@ -28,12 +28,13 @@ def request( url, api_key )
     # end
     # return data_imgs
 
-    data_camara = {}
-
-    data_photos.each do | key, value |
-        data_camara[ value ].push if key == [:name]    
+    data_camera = []
+    data_photos.each do | iter |
+        iter.each do | key, value |
+            data_camera.push( value ) if key == "camera"
+        end
     end
-    puts data_camara
+    puts data_camera
 end
 
 
