@@ -4,9 +4,9 @@ require "net/http"
 require "json"
 require "openssl"
 
-def request( address )
+def request( url, api_key )
 
-    url = URI( address )
+    url = URI( "#{url}&api_key=#{api_key}" )
     https = Net::HTTP.new( url.host, url.port );
     request = Net::HTTP::Get.new( url )
     https.use_ssl = true
@@ -16,7 +16,6 @@ def request( address )
 
     data_photos = data_api[ "photos" ]
     data_imgs = []
-    
     data_photos.each do | iter |
         iter.each do | key, value |
             data_imgs.push( value ) if ( key == "img_src" )
@@ -26,7 +25,7 @@ def request( address )
     
 end
 
-params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
+params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
 
 
 def build_web_page( data_imgs )
