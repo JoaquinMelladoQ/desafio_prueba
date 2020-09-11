@@ -2,17 +2,16 @@
 require "uri"
 require "net/http"
 require "json"
-
+require "openssl"
 
 def request( url, api_key )
 
     url = URI( "#{ url }&api_key=#{ api_key }" )
 
     https = Net::HTTP.new(url.host, url.port);
-    https.use_ssl = true
-
     request = Net::HTTP::Get.new(url)
-
+    https.use_ssl = true
+    https.verify_mode = OpenSSL::SSL::VERIFY_PEER
     response = https.request(request)
     data = response.read_body
     data_api = JSON.parse(data)
