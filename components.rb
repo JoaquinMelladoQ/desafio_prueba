@@ -4,20 +4,17 @@ require "net/http"
 require "json"
 require "openssl"
 
-def request( url, api_key )
+def request( address )
 
-    url = URI( "#{ url }&api_key=#{ api_key }" )
-
-    https = Net::HTTP.new(url.host, url.port);
-    request = Net::HTTP::Get.new(url)
+    url = URI( address )
+    https = Net::HTTP.new( url.host, url.port );
+    request = Net::HTTP::Get.new( url )
     https.use_ssl = true
     https.verify_mode = OpenSSL::SSL::VERIFY_PEER
-    response = https.request(request)
-    data = response.read_body
-    data_api = JSON.parse(data)
+    response = https.request( request )
+    data_api = JSON.parse( response.read_body )
 
     data_photos = data_api[ "photos" ]
-    
     data_imgs = []
     
     data_photos.each do | iter |
@@ -29,7 +26,7 @@ def request( url, api_key )
     
 end
 
-params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000", "BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
+params_request = request( "https://api.nasa.gov/mars-photos/api/v1/rovers/curiosity/photos?sol=1000&api_key=BRCj48Dlp7DbgVIWzYkRLp1zu60qKE92kfxDH4ec" )
 
 
 def build_web_page( data_imgs )
